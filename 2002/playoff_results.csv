@@ -1,0 +1,12 @@
+,Week,Day,Date,Winner/tie,,Loser/tie,,PtsW,PtsL
+0,WildCard,Sat,January 4,Atlanta Falcons,@,Green Bay Packers,boxscore,27,7
+1,WildCard,Sat,January 4,New York Jets,,Indianapolis Colts,boxscore,41,0
+2,WildCard,Sun,January 5,Pittsburgh Steelers,,Cleveland Browns,boxscore,36,33
+3,WildCard,Sun,January 5,San Francisco 49ers,,New York Giants,boxscore,39,38
+4,Division,Sat,January 11,Tennessee Titans,,Pittsburgh Steelers,boxscore,34,31
+5,Division,Sat,January 11,Philadelphia Eagles,,Atlanta Falcons,boxscore,20,6
+6,Division,Sun,January 12,Oakland Raiders,,New York Jets,boxscore,30,10
+7,Division,Sun,January 12,Tampa Bay Buccaneers,,San Francisco 49ers,boxscore,31,6
+8,ConfChamp,Sun,January 19,Oakland Raiders,,Tennessee Titans,boxscore,41,24
+9,ConfChamp,Sun,January 19,Tampa Bay Buccaneers,@,Philadelphia Eagles,boxscore,27,10
+10,SuperBowl,Sun,January 26,Tampa Bay Buccaneers,N,Oakland Raiders,boxscore,48,21

@@ -1,0 +1,174 @@
+,Stadium Name,From,To,G,City,State,Primary Team(s)
+0,Allegiant Stadium,2020,2020,5,Las Vegas,NV,Las Vegas Raiders
+1,Arrowhead Stadium,1972,2020,389,Kansas City,MO,Kansas City Chiefs
+2,AT&T Stadium,2009,2020,99,Arlington,TX,Dallas Cowboys
+3,Azteca Stadium,2005,2020,4,Mexico City,MX,
+4,Bank of America Stadium,1996,2020,205,Charlotte,NC,Carolina Panthers
+5,CenturyLink Field,2002,2020,160,Seattle,WA,Seattle Seahawks
+6,Edward Jones Dome,1995,2020,168,St. Louis,MO,St. Louis Rams
+7,EverBank Field,1995,2020,204,Jacksonville,FL,Jacksonville Jaguars
+8,FedExField,1997,2020,193,Landover,MD,Washington Football Team
+9,FirstEnergy Stadium,1999,2020,173,Cleveland,OH,Cleveland Browns
+10,Ford Field,2002,2020,152,Detroit,MI,Detroit Lions
+11,Gillette Stadium,2002,2020,173,Foxborough,MA,New England Patriots
+12,Hard Rock Stadium,1987,2020,279,Miami Gardens,FL,Miami Dolphins
+13,Heinz Field,2001,2020,171,Pittsburgh,PA,Pittsburgh Steelers
+14,Lambeau Field,1957,2020,389,Green Bay,WI,Green Bay Packers
+15,Levi's Stadium,2014,2020,53,Santa Clara,CA,San Francisco 49ers
+16,Lincoln Financial Field,2003,2020,152,Philadelphia,PA,Philadelphia Eagles
+17,Los Angeles Memorial Coliseum,1946,2020,409,Los Angeles,CA,"Los Angeles Dons, Los Angeles Rams, Los Angeles Chargers, Los Angeles Raiders"
+18,Lucas Oil Stadium,2008,2020,108,Indianapolis,IN,Indianapolis Colts
+19,M&T Bank Stadium,1998,2020,188,Baltimore,MD,Baltimore Ravens
+20,Mercedes-Benz Stadium,2017,2020,31,Atlanta,GA,Atlanta Falcons
+21,Mercedes-Benz Superdome,1975,2020,369,New Orleans,LA,New Orleans Saints
+22,MetLife Stadium,2010,2020,173,East Rutherford,NJ,"New York Giants, New York Jets"
+23,New Era Field,1973,2020,377,Orchard Park,NY,Buffalo Bills
+24,Nissan Stadium,1999,2020,178,Nashville,TN,Tennessee Titans
+25,NRG Stadium,2002,2020,157,Houston,TX,Houston Texans
+26,Oakland Coliseum,1966,2020,327,Oakland,CA,Oakland Raiders
+27,Paul Brown Stadium,2000,2020,168,Cincinnati,OH,Cincinnati Bengals
+28,Raymond James Stadium,1998,2020,185,Tampa,FL,Tampa Bay Buccaneers
+29,SoFi Stadium,2020,2020,10,Inglewood,CA,"Los Angeles Rams, Los Angeles Chargers"
+30,Soldier Field,1926,2020,433,Chicago,IL,"Chicago Hornets, Chicago Cardinals, Chicago Bears"
+31,Sports Authority Field at Mile High,2001,2020,167,Denver,CO,Denver Broncos
+32,StubHub Center,2017,2020,22,Carson,CA,Los Angeles Chargers
+33,Tottenham Stadium,2019,2020,2,London,UK,
+34,Twickenham Stadium,2016,2020,3,Twickenham,UK,
+35,U.S. Bank Stadium,2016,2020,40,Minneapolis,MN,Minnesota Vikings
+36,University of Phoenix Stadium,2006,2020,123,Glendale,AZ,Arizona Cardinals
+37,Wembley Stadium,2007,2020,23,London,UK,
+38,Georgia Dome,1992,2016,208,Atlanta,GA,Atlanta Falcons
+39,Qualcomm Stadium,1967,2016,398,San Diego,CA,San Diego Chargers
+40,TCF Bank Stadium,2010,2015,18,Minneapolis,MN,Minnesota Vikings
+41,Candlestick Park,1960,2013,371,San Francisco,CA,"Oakland Raiders, San Francisco 49ers"
+42,Mall of America Field,1982,2013,261,Minneapolis,MN,Minnesota Vikings
+43,Rogers Centre,2008,2013,6,Toronto,ON,
+44,Giants Stadium,1976,2009,492,East Rutherford,NJ,"New York Giants, New York Jets"
+45,Texas Stadium,1971,2008,313,Irving,TX,Dallas Cowboys
+46,RCA Dome,1984,2007,199,Indianapolis,IN,Indianapolis Colts
+47,Alamo Dome,2005,2005,3,San Antonio,TX,
+48,Sun Devil Stadium,1988,2005,145,Tempe,AZ,Phoenix Cardinals
+49,Tiger Stadium (LSU),2005,2005,4,Baton Rouge,LA,New Orleans Saints
+50,Memorial Stadium (Champaign),2002,2002,8,Champaign,IL,Chicago Bears
+51,Veterans Stadium,1971,2002,257,Philadelphia,PA,Philadelphia Eagles
+52,Foxboro Stadium,1971,2001,242,Foxborough,MA,New England Patriots
+53,Husky Stadium,1994,2001,19,Seattle,WA,Seattle Seahawks
+54,Pontiac Silverdome,1975,2001,212,Pontiac,MI,Detroit Lions
+55,Mile High Stadium,1960,2000,320,Denver,CO,Denver Broncos
+56,Three Rivers Stadium,1970,2000,254,Pittsburgh,PA,Pittsburgh Steelers
+57,Cinergy Field,1970,1999,234,Cincinnati,OH,Cincinnati Bengals
+58,Seattle Kingdome,1976,1999,187,Seattle,WA,Seattle Seahawks
+59,Vanderbilt Stadium,1998,1998,8,Nashville,TN,Tennessee Oilers
+60,Houlihan's Stadium,1969,1997,176,Tampa,FL,Tampa Bay Buccaneers
+61,Liberty Bowl Memorial Stadium,1997,1997,8,Memphis,TN,Tennessee Oilers
+62,Memorial Stadium (Baltimore),1946,1997,261,Baltimore,MD,"Baltimore Colts, Baltimore Colts, Baltimore Ravens"
+63,Houston Astrodome,1968,1996,223,Houston,TX,Houston Oilers
+64,RFK Memorial Stadium,1961,1996,278,Washington,DC,Washington Redskins
+65,Busch Memorial Stadium,1966,1995,163,St. Louis,MO,St. Louis Cardinals
+66,Cleveland Municipal Stadium,1931,1995,387,Cleveland,OH,"Cleveland Indians, Cleveland Rams, Cleveland Browns"
+67,Memorial Stadium (Clemson),1995,1995,8,Clemson,SC,Carolina Panthers
+68,Anaheim Stadium,1980,1994,118,Anaheim,CA,Los Angeles Rams
+69,Milwaukee County Stadium,1953,1994,126,Milwaukee,WI,Green Bay Packers
+70,Rose Bowl,1976,1992,5,Pasadena,CA,
+71,Atlanta-Fulton County Stadium,1966,1991,194,Atlanta,GA,Atlanta Falcons
+72,Stanford Stadium,1984,1989,2,Stanford,CA,
+73,Orange Bowl,1946,1986,177,Miami,FL,"Miami Seahawks, Miami Dolphins"
+74,Shea Stadium,1964,1983,150,New York,NY,"New York Jets, New York Giants"
+75,Metropolitan Stadium,1959,1981,162,Bloomington,MN,Minnesota Vikings
+76,Tiger Stadium,1925,1974,256,Detroit,MI,"Detroit Panthers, Detroit Lions"
+77,Tulane Stadium,1938,1974,60,New Orleans,LA,New Orleans Saints
+78,Yale Bowl,1973,1974,12,New Haven,CT,New York Giants
+79,California Memorial Stadium,1973,1973,1,Berkeley,CA,
+80,Rice Stadium,1965,1973,22,Houston,TX,Houston Oilers
+81,Yankee Stadium,1927,1973,169,New York,NY,"New York Yankees, New York Yankees, New York Yanks, New York Giants"
+82,War Memorial Stadium,1938,1972,127,Buffalo,NY,"Buffalo Bills, Buffalo Bills"
+83,Cotton Bowl,1952,1971,107,Dallas,TX,"Dallas Texans, Dallas Cowboys, Dallas Texans"
+84,Kansas City Municipal Stadium,1963,1971,64,Kansas City,MO,Kansas City Chiefs
+85,Dyche Stadium,1970,1970,1,Evanston,IL,
+86,Franklin Field,1958,1970,89,Philadelphia,PA,Philadelphia Eagles
+87,Harvard Stadium,1962,1970,8,Boston,MA,Boston Patriots
+88,Kezar Stadium,1946,1970,170,San Francisco,CA,"San Francisco 49ers, Oakland Raiders"
+89,Wrigley Field,1920,1970,341,Chicago,IL,"Chicago Bears, Chicago Cardinals"
+90,Alumni Stadium,1963,1969,9,Chestnut Hill,MA,Boston Patriots
+91,Grant Field,1969,1969,1,Atlanta,GA,
+92,Memorial Stadium (Minnesota),1969,1969,1,Minneapolis,MN,
+93,Nippert Stadium,1968,1969,14,Cincinnati,OH,Cincinnati Bengals
+94,Pitt Stadium ,1958,1969,55,Pittsburgh,PA,Pittsburgh Steelers
+95,Fenway Park,1933,1968,90,Boston,MA,"Boston Redskins, Boston Yanks, Boston Patriots"
+96,Legion Field,1968,1968,1,Birmingham,AL,
+97,Balboa Stadium,1961,1966,45,San Diego,CA,San Diego Chargers
+98,Busch Stadium (Sportsman's Park),1923,1965,46,St. Louis,MO,"St. Louis All-Stars, St. Louis Gunners, St. Louis Cardinals"
+99,Frank Youell Field,1962,1965,28,Oakland,CA,Oakland Raiders
+100,Jeppesen Stadium,1960,1964,37,Houston,TX,Houston Oilers
+101,Forbes Field,1933,1963,161,Pittsburgh,PA,"Chi/Pit Cards/Steelers, Chi/Pit Cards/Steelers"
+102,Polo Grounds,1925,1963,244,New York,NY,"New York Giants, New York Bulldogs, New York Jets"
+103,Braves Field,1925,1962,31,Boston,MA,"Boston Bulldogs, Boston Braves, Boston Patriots"
+104,Griffith Stadium,1937,1960,145,Washington,DC,Washington Redskins
+105,Comiskey Park,1922,1958,135,Chicago,IL,Chicago Cardinals
+106,Shibe Park,1925,1957,105,Philadelphia,PA,Philadelphia Eagles
+107,City Stadium,1925,1956,136,Green Bay,WI,Green Bay Packers
+108,Marquette Stadium,1952,1952,3,Milwaukee,WI,
+109,Rubber Bowl,1941,1952,3,Akron,OH,
+110,Wisconsin State Fair Park,1934,1951,42,West Allis,WI,
+111,Philadelphia Municipal Stadium,1931,1950,23,Philadelphia,PA,Philadelphia Eagles
+112,Ebbets Field,1926,1948,115,New York,NY,"Brooklyn Lions, Brooklyn Dodgers, Brooklyn Dodgers"
+113,League Park,1923,1945,30,Cleveland,OH,"Cleveland Bulldogs, Cleveland Rams"
+114,Erie Stadium,1938,1942,2,Erie,PA,
+115,University of Detroit Stadium,1928,1940,34,Detroit,MI,"Detroit Wolverines, Detroit Lions"
+116,Broadmoor Stadium,1939,1939,1,Colorado Springs,CO,
+117,Laidley Field,1938,1938,1,Charleston,WV,
+118,Shaw Stadium,1938,1938,4,East Cleveland,OH,Cleveland Rams
+119,Point Stadium,1936,1936,1,Johnstown,PA,
+120,Baker Bowl,1931,1935,16,Philadelphia,PA,"Frankford Yellow Jackets, Philadelphia Eagles"
+121,Temple Stadium,1934,1935,2,Philadelphia,PA,
+122,Corcoran Field,1934,1934,1,Cincinnati,OH,Cincinnati Reds
+123,Crosley Field,1931,1934,7,Cincinnati,OH,Cincinnati Reds
+124,Triangle Park,1922,1934,11,Dayton,OH,Dayton Triangles
+125,Universal Stadium,1930,1934,26,Portsmouth,OH,Portsmouth Spartans
+126,Borchert Field,1922,1933,25,Milwaukee,WI,Milwaukee Badgers
+127,Chicago Stadium,1932,1932,1,Chicago,IL,
+128,Thompson's Stadium,1929,1932,26,Staten Island,NY,Staten Island Stapletons
+129,Cycledrome,1925,1931,57,Providence,RI,Providence Steam Roller
+130,Loyola Stadium,1931,1931,1,Chicago,IL,
+131,Frankford Stadium,1924,1930,76,Philadelphia,PA,Frankford Yellow Jackets
+132,Mills Stadium,1930,1930,1,Chicago,IL,
+133,Newark Schools Stadium,1930,1930,3,Newark,NJ,Newark Tornadoes
+134,Nicollet Park,1922,1930,14,Minneapolis,MN,Minneapolis Marines
+135,Velodrome,1930,1930,2,Newark,NJ,
+136,Bison Stadium,1924,1929,23,Buffalo,NY,Buffalo Bisons
+137,Breese Stevens Field,1929,1929,1,Madison,WI,
+138,Kinsley Park,1929,1929,1,Providence,RI,
+139,Knights of Columbus Stadium,1929,1929,5,East Orange,NJ,Orange Tornadoes
+140,Minersville Park,1925,1929,32,Minersville,PA,Pottsville Maroons
+141,Normal Park,1920,1928,31,Chicago,IL,Chicago Cardinals
+142,Archbold Stadium,1927,1927,1,Syracuse,NY,
+143,Luna Park,1927,1927,5,Cleveland,OH,Cleveland Bulldogs
+144,East Hartford Velodrome,1926,1926,8,East Hartford,CT,Hartford Blues
+145,General Field,1924,1926,7,Akron,OH,Akron Indians
+146,Horlick Legion Field,1922,1926,21,Racine,WI,Racine Legion
+147,Lakeside Park,1922,1926,25,Canton,OH,Canton Bulldogs
+148,Muehlebach Field,1924,1926,6,Kansas City,MO,Kansas City Blues
+149,Turner Field,1926,1926,1,Hammond,IN,Hammond Pros
+150,West Side Athletic Club Field ,1924,1926,3,Columbus,OH,Columbus Tigers
+151,Clarkin Field,1925,1925,1,Hartford,CT,
+152,DePaul Field,1925,1925,1,Chicago,IL,
+153,Douglas Park,1920,1925,25,Rock Island,IL,Rock Island Independents
+154,Duluth Athletic Park,1923,1925,7,Duluth,MN,Duluth Eskimos
+155,Bellevue Park,1923,1924,12,Green Bay,WI,Green Bay Packers
+156,Edgerton Park,1922,1924,6,Rochester,NY,Rochester Jeffersons
+157,Nash Employees' Field,1924,1924,1,Kenosha,WI,Kenosha Maroons
+158,Armory Park,1923,1923,3,Toledo,OH,Toledo Maroons
+159,Buffalo Baseball Park,1922,1923,11,Buffalo,NY,Buffalo All-Americans
+160,Neil Park,1922,1923,7,Columbus,OH,Columbus Panhandles
+161,Parkway Field,1923,1923,1,Louisville,KY,Louisville Brecks
+162,Wooster Avenue Stadium,1923,1923,1,Akron,OH,Akron Pros
+163,Hagemeister Park,1921,1922,9,Green Bay,WI,Green Bay Packers
+164,League Park,1922,1922,5,Akron,OH,Akron Pros
+165,Lincoln Park,1922,1922,1,Marion,OH,Oorang Indians
+166,Swayne Field,1922,1922,6,Toledo,OH,Toledo Maroons
+167,Bosse Field,1921,1921,4,Evansville,IN,
+168,Staley Field,1920,1921,3,Decatur,IL,
+169,Pyott's Park,1920,1920,1,Chicago,IL,
+170,St. Rita's Stadium,1920,1920,1,Chicago,IL,
+171,Aloha Stadium,,,0,Honolulu,HI,
+172,IG Field,,,0,Winnipeg,Mani,
