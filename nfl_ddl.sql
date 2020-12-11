@@ -7,9 +7,11 @@ CREATE TABLE teams(
 
 CREATE TABLE teams_map(
 	team_id int REFERENCES teams(team_id),
-	year int,
 	name text,
-	PRIMARY KEY(team_id, year)
+	abbrev text,
+	year_from int,
+	year_to int,
+	PRIMARY KEY(team_id, name)
 );
 
 CREATE TABLE season_team_stats(
