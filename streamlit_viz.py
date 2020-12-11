@@ -2,11 +2,12 @@ import streamlit as st
 import pandas as pd
 from vega_datasets import data
 
+import sqlalchemy
 from sqlalchemy import create_engine
 url = 'postgresql://admin:jntpjijh@35.230.82.92:13601/nfl'
-engine = create_engine('postgresql://admin:jntpjijh@35.230.82.92:13601/nfl')
+engine = create_engine('postgresql://admin:jntpjijh@35.230.82.92:13601/nfl', echo=False)
 
-@st.cache
+@st.cache(hash_funcs={sqlalchemy.engine.Engine: lambda _: None})
 def get_data(query):
     return pd.read_sql(query, engine)
 
