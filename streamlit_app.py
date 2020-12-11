@@ -42,10 +42,14 @@ class Toc:
         self._items.append(f"{space}* <a href='#{key}'>{text}</a>")
 
 
+page_title = "Visualizations for NFL Database"
+st.set_page_config(page_title=page_title, page_icon=
+    "https://upload.wikimedia.org/wikipedia/en/thumb/a/a2/National_Football_League_logo.svg/1920px-National_Football_League_logo.svg.png")
+
+
 toc = Toc()
 toc.placeholder(True)
-toc.title("Visualizations for NFL Database")
-
+toc.title(page_title)
 
 
 toc.header("Introduction")
