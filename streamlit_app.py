@@ -62,31 +62,65 @@ toc.header("Queries")
 
 
 # Query 1
-toc.subheader("Query 1")
+toc.subheader("Yearly Player Statistics")
+aggr_stat = st.multiselect("View 2002-2020 Player Statistics", ['Passing', 'Rushing', 'Receiving', 'Defense'], [])
+query_years = st.multiselect("Select Years (default all)", [str(year) for year in range(2002, 2021)], [str(year) for year in range(2002, 2021)])
 
-with st.echo(code_location='below'):
-    df = get_data('select * from teams;')
-    st.write('Here is the table for the first query')
+teams = list(get_data("SELECT current_name from teams;")['current_name'])
+query_teams = st.multiselect("Select Teams (default all)", teams, teams)
+
+year_query = ""
+if len(query_years) > 1:
+    year_query = "AND players.year IN {}".format(tuple(query_years))
+elif len(query_years) == 1:
+    year_query = "AND players.year = {}".format(query_years[0])
+
+team_query = ""
+if len(query_teams) > 1:
+    team_query = "AND teams.current_name IN {}".format(tuple(query_teams))
+elif len(query_teams) == 1:
+    team_query = "AND teams.current_name = '{}'".format(query_teams[0])
+
+
+if 'Passing' in aggr_stat:
+    st.subheader("Passing Data")
+    query = '''SELECT player_name AS "Name", year AS "Year", current_name AS "Team", wins AS "Wins", losses AS "Losses", 
+    ties AS "Ties", completions AS "Comp", attempts AS "Att", cast(completions AS float)/attempts AS "Percent Completed",
+    yards AS "Yds", cast(yards AS float)/attempts AS "Yards per Attempt", touchdowns AS "TD", interceptions AS "Int"
+    FROM (SELECT * FROM passing JOIN players ON players.player_season_id = passing.player_season_id AND players.position LIKE '%QB%' {year_qry}) 
+    AS passers JOIN teams ON passers.team_id = teams.team_id {team_qry};'''.format(year_qry=year_query, team_qry=team_query)
+    df = get_data(query)
+    df = df.fillna(0)
     st.write(df)
-
-
-# Query 1
-toc.subheader("Query 2")
-
-with st.echo(code_location='below'):
-    df = get_data('select * from season_team_stats;')
-    st.write('Here is the table for the second query')
+if 'Rushing' in aggr_stat:
+    st.subheader("Rushing Data")
+    query = '''SELECT player_name AS "Name", year AS "Year", current_name AS "Team", games_started AS "Games Started", 
+    attempts AS "Att", yards AS "Yds", cast(yards AS float)/attempts AS "Yards per Attempt", touchdowns AS "TD", fumbles AS "Fmb"
+    FROM (SELECT * FROM rushing JOIN players ON players.player_season_id = rushing.player_season_id AND rushing.yards > 50 {year_qry}) 
+    AS rushers JOIN teams ON rushers.team_id = teams.team_id {team_qry};'''.format(year_qry=year_query, team_qry=team_query)
+    df = get_data(query)
+    df = df.fillna(0)
     st.write(df)
-
-
-# Query 3
-toc.subheader("Query 3")
-
-with st.echo(code_location='below'):
-    df = get_data('select * from players;')
-    st.write('Here is the table for the last query')
+if 'Receiving' in aggr_stat:
+    st.subheader("Receiving Data")
+    query = '''SELECT player_name AS "Name", year AS "Year", current_name AS "Team", games_started AS "Games Started", 
+    receptions AS "Rec", targets AS "Tgt", cast(receptions AS float)/targets AS "Percent Caught", touchdowns AS "TD", fumbles AS "Fmb"
+    FROM (SELECT * FROM receiving JOIN players ON players.player_season_id = receiving.player_season_id AND receiving.yards > 50 {year_qry}) 
+    AS receivers JOIN teams ON receivers.team_id = teams.team_id {team_qry};'''.format(year_qry=year_query, team_qry=team_query)
+    df = get_data(query)
+    df = df.fillna(0)
     st.write(df)
-
-
+if 'Defense' in aggr_stat:
+    st.subheader("Defense Data")
+    query = '''SELECT player_name AS "Name", year AS "Year", current_name AS "Team", games_started AS "Games Started", 
+    interceptions AS "Int", interception_yards AS "IntYds", interception_touchdowns AS "IntTD", fumbles_forced AS "FF", fumbles_recovered AS "FR",
+    fumble_yards AS "FmbYards", fumble_touchdowns AS "FmbTD", sacks as "Sacks", assisted_tackles AS "Asst", solo_tackles AS "Solo", solo_tackles + assisted_tackles AS "Tot",
+    tackles_for_loss AS "TFL" 
+    FROM (SELECT * FROM defense JOIN players ON players.player_season_id = defense.player_season_id AND defense.games_started > 1 {year_qry}) 
+    AS defenders JOIN teams ON defenders.team_id = teams.team_id {team_qry};'''.format(year_qry=year_query, team_qry=team_query)
+    df = get_data(query)
+    df = df.fillna(0)
+    st.write(df)
+    
 # Generate table of contents
 toc.generate()
