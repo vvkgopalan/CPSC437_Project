@@ -1,6 +1,6 @@
 CREATE TABLE teams(
 	team_id int PRIMARY KEY,
-	conf text,
+	conference text,
 	division text,
 	current_name text
 );
@@ -76,6 +76,7 @@ CREATE TABLE defense(
 	fumbles_forced int,
 	fumbles_recovered int,
 	fumble_yards int,
+	fumble_touchdowns int,
 	sacks float,
 	solo_tackles float,
 	assisted_tackles float,
