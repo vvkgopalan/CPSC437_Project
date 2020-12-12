@@ -6,7 +6,6 @@ from matplotlib import cm as cm
 import numpy as np
 import sqlalchemy
 from sqlalchemy import create_engine
-url = 'postgresql://admin:jntpjijh@35.230.82.92:13601/nfl'
 engine = create_engine('postgresql://admin:jntpjijh@35.230.82.92:13601/nfl', echo=False)
 
 @st.cache(hash_funcs={sqlalchemy.engine.Engine: lambda _: None})
@@ -52,11 +51,10 @@ st.set_page_config(page_title=page_title, page_icon=
 toc = Toc()
 toc.placeholder(True)
 toc.title(page_title)
-
-
-toc.header("Introduction")
 """
-Welcome to our webpage!
+Below are some visualizations for the NFL database created by SK Bong and Vivek Gopalan.
+
+See the [GitHub repository](https://github.com/vvkgopalan/CPSC437_Project) for the code, data, and README.
 """
 
 ## Dynamic visualization of player statistics per year 
