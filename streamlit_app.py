@@ -222,5 +222,34 @@ plt.yticks(fontsize=6)
 fig.tight_layout()
 st.write(fig)
 
+
+toc.header("Winning-est/Losing-est Coaches")
+coach_option = st.radio("Select Aggregation Option (min 16 games)", ('Losing-est (Coach & Team)', 'Losing-est (Overall)', 'Winning-est (Coach & Team)', 'Winning-est (Overall)'))
+
+if coach_option == 'Losing-est (Coach & Team)':
+    query = '''SELECT name as "Name", SUM(wins) as "Wins", SUM(losses) AS "Losses", current_name AS "Team"
+    FROM coaches JOIN teams ON teams.team_id = coaches.team_id GROUP BY name, "Team" HAVING SUM(losses) + SUM(wins) >= 16 ORDER BY cast(SUM(wins) AS float)/SUM(losses) ASC'''
+    df = get_data(query)
+    df = df.fillna(0)
+    st.write(df)
+elif coach_option == 'Losing-est (Overall)':
+    query = '''SELECT name as "Name", SUM(wins) as "Wins", SUM(losses) AS "Losses"
+    FROM coaches GROUP BY name HAVING SUM(losses) + SUM(wins) >= 16 ORDER BY cast(SUM(wins) AS float)/SUM(losses) ASC'''
+    df = get_data(query)
+    df = df.fillna(0)
+    st.write(df)
+elif coach_option == 'Winning-est (Coach & Team)':
+    query = '''SELECT name as "Name", SUM(wins) as "Wins", SUM(losses) AS "Losses", current_name AS "Team"
+    FROM coaches JOIN teams ON teams.team_id = coaches.team_id GROUP BY name, "Team" HAVING SUM(losses) + SUM(wins) >= 16 ORDER BY cast(SUM(wins) AS float)/SUM(losses) DESC'''
+    df = get_data(query)
+    df = df.fillna(0)
+    st.write(df)
+elif coach_option == 'Winning-est (Overall)':
+    query = '''SELECT name as "Name", SUM(wins) as "Wins", SUM(losses) AS "Losses"
+    FROM coaches GROUP BY name HAVING SUM(losses) + SUM(wins) >= 16 ORDER BY cast(SUM(wins) AS float)/SUM(losses) DESC'''
+    df = get_data(query)
+    df = df.fillna(0)
+    st.write(df)
+
 # Generate table of contents
 toc.generate()
