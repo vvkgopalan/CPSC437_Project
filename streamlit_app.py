@@ -182,7 +182,9 @@ if 'Defense' in aggr_team_stat:
     st.write(df)
 
 ## Todo: static visualization of the best QBs, RBs, WRs since 2002 in aggregate, one ordered by Yds and another ordered by TD
-## Todo: static visualization of teams since 2002 ordered by wins (essentially outputting season_team_stats - just want to display points for and points against)
+
+
+## Static visualization of teams since 2002 ordered by wins
 toc.header("Teams Ordered By Wins (Since 2002)")
 query = """
 SELECT name AS "Team Name", year, wins, losses, ties, points_for, points_against FROM season_team_stats, teams_map WHERE season_team_stats.team_id = teams_map.team_id AND teams_map.year_from <= season_team_stats.year AND season_team_stats.year <= teams_map.year_to;
@@ -196,7 +198,69 @@ st.write(df)
 
 
 ## Todo: 2020 team predictions based on similarity. Maybe this also has us predict the superbowl winner and player award winners.
-## Todo: output stats of award winners
+
+
+## Stats of MVP Winners
+toc.header("Most Valuable Player (MVP) Winner Statistics")
+query = """
+SELECT awards.year, player_name, mvp_position AS position, teams_map.name AS team, season_team_stats.wins, season_team_stats.losses, season_team_stats.ties,
+    passing.yards AS "passing_yards", passing.touchdowns AS "passing_TD", rushing.yards AS "rushing_yards", rushing.touchdowns AS "rushing_TD", receiving.yards AS "receiving_yards", receiving.touchdowns AS "receiving_TD"
+FROM awards
+LEFT JOIN players ON mvp_player = players.player_season_id
+LEFT JOIN teams_map ON teams_map.team_id = players.team_id AND teams_map.year_from <= awards.year AND awards.year <= teams_map.year_to
+LEFT JOIN season_team_stats ON season_team_stats.team_id = teams_map.team_id AND season_team_stats.year = awards.year
+LEFT JOIN passing ON mvp_player = passing.player_season_id
+LEFT JOIN rushing ON mvp_player = rushing.player_season_id
+LEFT JOIN receiving ON mvp_player = receiving.player_season_id;
+"""
+df = get_data(query)
+df = df.fillna(0)
+df.columns = df.columns.str.replace("_", " ").str.title().str.replace("Td", "TD")
+df.insert(7, "Total Yards", df["Passing Yards"]+df["Rushing Yards"]+df["Receiving Yards"])
+df.insert(7, "Total TD", df["Passing TD"]+df["Rushing TD"]+df["Receiving TD"])
+df.sort_values(["Total TD", "Total Yards"], ascending=False, inplace=True)
+st.write(df)
+
+
+## Stats of OPOY Winners
+toc.header("Offensive Player of the Year (OPOY) Winner Statistics")
+query = """
+SELECT awards.year, player_name, opoy_position AS position, teams_map.name AS team, season_team_stats.wins, season_team_stats.losses, season_team_stats.ties,
+    passing.yards AS "passing_yards", passing.touchdowns AS "passing_TD", rushing.yards AS "rushing_yards", rushing.touchdowns AS "rushing_TD", receiving.yards AS "receiving_yards", receiving.touchdowns AS "receiving_TD"
+FROM awards
+LEFT JOIN players ON opoy_player = players.player_season_id
+LEFT JOIN teams_map ON teams_map.team_id = players.team_id AND teams_map.year_from <= awards.year AND awards.year <= teams_map.year_to
+LEFT JOIN season_team_stats ON season_team_stats.team_id = teams_map.team_id AND season_team_stats.year = awards.year
+LEFT JOIN passing ON opoy_player = passing.player_season_id
+LEFT JOIN rushing ON opoy_player = rushing.player_season_id
+LEFT JOIN receiving ON opoy_player = receiving.player_season_id;
+"""
+df = get_data(query)
+df = df.fillna(0)
+df.columns = df.columns.str.replace("_", " ").str.title().str.replace("Td", "TD")
+df.insert(7, "Total Yards", df["Passing Yards"]+df["Rushing Yards"]+df["Receiving Yards"])
+df.insert(7, "Total TD", df["Passing TD"]+df["Rushing TD"]+df["Receiving TD"])
+df.sort_values(["Total TD", "Total Yards"], ascending=False, inplace=True)
+st.write(df)
+
+
+## Stats of DPOY Winners
+toc.header("Defensive Player of the Year (DPOY) Winner Statistics")
+query = """
+SELECT awards.year, player_name, dpoy_position AS position, teams_map.name AS team, season_team_stats.wins, season_team_stats.losses, season_team_stats.ties,
+    solo_tackles, assisted_tackles, fumbles_forced, interceptions, sacks
+FROM awards
+LEFT JOIN players ON dpoy_player = players.player_season_id
+LEFT JOIN teams_map ON teams_map.team_id = players.team_id AND teams_map.year_from <= awards.year AND awards.year <= teams_map.year_to
+LEFT JOIN season_team_stats ON season_team_stats.team_id = teams_map.team_id AND season_team_stats.year = awards.year
+LEFT JOIN defense ON dpoy_player = defense.player_season_id;
+"""
+df = get_data(query)
+df = df.fillna(0)
+df.columns = df.columns.str.replace("_", " ").str.title()
+df.insert(7, "Total Tackles", df["Solo Tackles"]+df["Assisted Tackles"])
+df.sort_values(["Total Tackles", "Year"], ascending=False, inplace=True)
+st.write(df)
 
 ## Vivek stretch todo: scorigami  
 toc.header("NFL Scorigami")
@@ -221,7 +285,7 @@ plt.yticks(fontsize=6)
 fig.tight_layout()
 st.write(fig)
 
-## static visualization of winningest coaches, losingest coaches.
+# Visualization of winningest coaches, losingest coaches.
 toc.header("Winning-est/Losing-est Coaches")
 coach_option = st.radio("Select Aggregation Option (min 16 games)", ('Losing-est (Coach & Team)', 'Losing-est (Overall)', 'Winning-est (Coach & Team)', 'Winning-est (Overall)'))
 
