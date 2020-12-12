@@ -57,7 +57,7 @@ toc.header("Introduction")
 Welcome to our webpage!
 """
 
-# Query 1
+## Dynamic visualization of player statistics per year 
 toc.header("Yearly Player Statistics")
 aggr_stat = st.multiselect("View 2002-2020 Player Statistics", ['Passing', 'Rushing', 'Receiving', 'Defense'], [])
 query_years = st.multiselect("Select Years (default all)", [str(year) for year in range(2002, 2021)], [str(year) for year in range(2002, 2021)])
@@ -118,6 +118,8 @@ if 'Defense' in aggr_stat:
     df = df.fillna(0)
     st.write(df)
 
+## Dynamic visualization of team statistcs per year. 
+## Todo: Add info from season_team_stats
 toc.header("Yearly Team Statistics")
 aggr_team_stat = st.multiselect("View 2002-2020 Team Statistics", ['Passing', 'Rushing', 'Receiving', 'Defense'], [])
 query_team_years = st.multiselect("Select Years for Aggregation (default all)", [str(year) for year in range(2002, 2021)], [str(year) for year in range(2002, 2021)])
@@ -176,6 +178,15 @@ if 'Defense' in aggr_team_stat:
     st.subheader("Teme Defense Data")
     # Todo
     st.write(df)
+
+## Todo: static visualization of the best QBs, RBs, WRs since 2002 in aggregate, one ordered by Yds and another ordered by TD
+## Todo: static visualization of teams since 2002 ordered by wins (essentially outputting season_team_stats - just want to display points for and points against)
+## Todo: toughest stadiums visualization (maybe bar chart on top of table)
+## Todo: 2020 team predictions based on similarity. Maybe this also has us predict the superbowl winner and player award winners.
+## Todo: output stats of award winners
+## Todo: static visualization of winningest coaches, losingest coaches.
+
+## Vivek stretch todo: scorigami  
 
 # Generate table of contents
 toc.generate()
