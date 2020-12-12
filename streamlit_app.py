@@ -356,5 +356,23 @@ def get_stadium_strengths():
 stadium_strengths = get_stadium_strengths()
 st.write(stadium_strengths.sort_values(by='W/L', ascending=False))
 
+## 10 best home recods
+barfig = plt.figure()
+barax = barfig.add_axes([0,0,1,1])
+stadiums = stadium_strengths.sort_values(by='W/L', ascending=False).index.tolist()[0:10]
+wls = stadium_strengths.sort_values(by='W/L', ascending=False)['W/L'][0:10]
+barax.bar(stadiums,wls)
+plt.xticks(rotation = 'vertical')
+st.write(barfig)
+
+## 10 worst home records
+barfig = plt.figure()
+barax = barfig.add_axes([0,0,1,1])
+stadiums = stadium_strengths.sort_values(by='W/L', ascending=True).index.tolist()[0:10]
+wls = stadium_strengths.sort_values(by='W/L', ascending=True)['W/L'][0:10]
+barax.bar(stadiums,wls)
+plt.xticks(rotation = 'vertical')
+st.write(barfig)
+
 # Generate table of contents
 toc.generate()
