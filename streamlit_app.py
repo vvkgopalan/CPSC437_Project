@@ -181,6 +181,17 @@ if 'Defense' in aggr_team_stat:
 
 ## Todo: static visualization of the best QBs, RBs, WRs since 2002 in aggregate, one ordered by Yds and another ordered by TD
 ## Todo: static visualization of teams since 2002 ordered by wins (essentially outputting season_team_stats - just want to display points for and points against)
+toc.header("Teams Ordered By Wins (Since 2002)")
+query = """
+SELECT name AS "Team Name", year, wins, losses, ties, points_for, points_against FROM season_team_stats, teams_map WHERE season_team_stats.team_id = teams_map.team_id AND teams_map.year_from <= season_team_stats.year AND season_team_stats.year <= teams_map.year_to;
+"""
+df = get_data(query)
+df = df.fillna(0)
+df.columns = df.columns.str.replace("_", " ").str.title()
+df.sort_values(["Wins", "Year"], ascending=False, inplace=True)
+st.write(df)
+
+
 ## Todo: toughest stadiums visualization (maybe bar chart on top of table)
 ## Todo: 2020 team predictions based on similarity. Maybe this also has us predict the superbowl winner and player award winners.
 ## Todo: output stats of award winners
