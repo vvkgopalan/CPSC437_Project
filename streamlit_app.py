@@ -350,6 +350,7 @@ def get_stadium_strengths():
             stadium_list.append("Neutral Site")
 
     games_data["stadiums"] = stadium_list
+    games_data = games_data[games_data['stadiums'] != "Neutral Site"]
     summarize_stadiums = games_data.groupby(['stadiums'])[['home_win', 'home_loss']].sum()
     summarize_stadiums["W/L"] = summarize_stadiums['home_win']/summarize_stadiums['home_loss']
     return summarize_stadiums
