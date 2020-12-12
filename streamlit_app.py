@@ -57,12 +57,8 @@ toc.header("Introduction")
 Welcome to our webpage!
 """
 
-
-toc.header("Queries")
-
-
 # Query 1
-toc.subheader("Yearly Player Statistics")
+toc.header("Yearly Player Statistics")
 aggr_stat = st.multiselect("View 2002-2020 Player Statistics", ['Passing', 'Rushing', 'Receiving', 'Defense'], [])
 query_years = st.multiselect("Select Years (default all)", [str(year) for year in range(2002, 2021)], [str(year) for year in range(2002, 2021)])
 
@@ -83,7 +79,7 @@ elif len(query_teams) == 1:
 
 
 if 'Passing' in aggr_stat:
-    st.subheader("Passing Data")
+    st.subheader("Player Passing Data (QB Only)")
     query = '''SELECT player_name AS "Name", year AS "Year", current_name AS "Team", wins AS "Wins", losses AS "Losses", 
     ties AS "Ties", completions AS "Comp", attempts AS "Att", cast(completions AS float)/attempts AS "Percent Completed",
     yards AS "Yds", cast(yards AS float)/attempts AS "Yards per Attempt", touchdowns AS "TD", interceptions AS "Int"
@@ -93,7 +89,7 @@ if 'Passing' in aggr_stat:
     df = df.fillna(0)
     st.write(df)
 if 'Rushing' in aggr_stat:
-    st.subheader("Rushing Data")
+    st.subheader("Player Rushing Data (> 50 Yards)")
     query = '''SELECT player_name AS "Name", year AS "Year", current_name AS "Team", games_started AS "Games Started", 
     attempts AS "Att", yards AS "Yds", cast(yards AS float)/attempts AS "Yards per Attempt", touchdowns AS "TD", fumbles AS "Fmb"
     FROM (SELECT * FROM rushing JOIN players ON players.player_season_id = rushing.player_season_id AND rushing.yards > 50 {year_qry}) 
@@ -102,16 +98,16 @@ if 'Rushing' in aggr_stat:
     df = df.fillna(0)
     st.write(df)
 if 'Receiving' in aggr_stat:
-    st.subheader("Receiving Data")
+    st.subheader("Player Receiving Data (> 50 Yards)")
     query = '''SELECT player_name AS "Name", year AS "Year", current_name AS "Team", games_started AS "Games Started", 
-    receptions AS "Rec", targets AS "Tgt", cast(receptions AS float)/targets AS "Percent Caught", touchdowns AS "TD", fumbles AS "Fmb"
+    receptions AS "Rec", targets AS "Tgt", cast(receptions AS float)/targets AS "Percent Caught", yards as "Yds", touchdowns AS "TD", fumbles AS "Fmb"
     FROM (SELECT * FROM receiving JOIN players ON players.player_season_id = receiving.player_season_id AND receiving.yards > 50 {year_qry}) 
     AS receivers JOIN teams ON receivers.team_id = teams.team_id {team_qry};'''.format(year_qry=year_query, team_qry=team_query)
     df = get_data(query)
     df = df.fillna(0)
     st.write(df)
 if 'Defense' in aggr_stat:
-    st.subheader("Defense Data")
+    st.subheader("Player Defense Data (> 1 Game)")
     query = '''SELECT player_name AS "Name", year AS "Year", current_name AS "Team", games_started AS "Games Started", 
     interceptions AS "Int", interception_yards AS "IntYds", interception_touchdowns AS "IntTD", fumbles_forced AS "FF", fumbles_recovered AS "FR",
     fumble_yards AS "FmbYards", fumble_touchdowns AS "FmbTD", sacks as "Sacks", assisted_tackles AS "Asst", solo_tackles AS "Solo", solo_tackles + assisted_tackles AS "Tot",
@@ -121,6 +117,65 @@ if 'Defense' in aggr_stat:
     df = get_data(query)
     df = df.fillna(0)
     st.write(df)
+
+toc.header("Yearly Team Statistics")
+aggr_team_stat = st.multiselect("View 2002-2020 Team Statistics", ['Passing', 'Rushing', 'Receiving', 'Defense'], [])
+query_team_years = st.multiselect("Select Years for Aggregation (default all)", [str(year) for year in range(2002, 2021)], [str(year) for year in range(2002, 2021)])
+
+query_team_teams = st.multiselect("Select Teams for Aggregation (default all)", teams, teams)
+
+team_year_query = ""
+if len(query_team_years) > 1:
+    team_year_query = "AND players.year IN {}".format(tuple(query_team_years))
+elif len(query_team_years) == 1:
+    team_year_query = "AND players.year = {}".format(query_team_years[0])
+
+team_team_query = ""
+if len(query_team_teams) > 1:
+    team_team_query = "AND teams.current_name IN {}".format(tuple(query_team_teams))
+elif len(query_team_teams) == 1:
+    team_team_query = "AND teams.current_name = '{}'".format(query_team_teams[0])
     
+if 'Passing' in aggr_team_stat:
+    st.subheader("Team Passing Data")
+    query = '''SELECT "Team", "Comp", "Att", "Yds", "TD", "Int", passing_teams.year, passing_teams.team_id, season_team_stats.team_id AS s_team_id FROM
+    (SELECT teams.current_name AS "Team", completions AS "Comp", attempts AS "Att", yards AS "Yds", touchdowns AS "TD", interceptions AS "Int", passers.year, passers.team_id
+    FROM (SELECT SUM(completions) AS completions, SUM(attempts) AS attempts, SUM(yards) as yards, SUM(touchdowns) AS touchdowns, SUM(interceptions) AS interceptions, players.team_id, players.year 
+    FROM passing JOIN players ON players.player_season_id = passing.player_season_id {year_qry} GROUP BY players.team_id, players.year) 
+    AS passers JOIN teams ON passers.team_id = teams.team_id {team_qry}) AS passing_teams JOIN season_team_stats ON season_team_stats.year = passing_teams.year;'''.format(year_qry=team_year_query, team_qry=team_team_query)
+    df = get_data(query)
+    df = df.fillna(0)
+    df = df[df['s_team_id'] == df['team_id']] #some strange stuff is happening w/ the query if I add this as a second condition for the join...
+    df = df.drop(['s_team_id', 'team_id'], axis = 1) 
+    st.write(df)
+if 'Rushing' in aggr_team_stat:
+    st.subheader("Team Rushing Data")
+    query = '''SELECT "Team", "Att", "Yds", "TD", "Fmb", rushing_teams.year, rushing_teams.team_id, season_team_stats.team_id AS s_team_id FROM
+    (SELECT teams.current_name AS "Team", attempts AS "Att", yards AS "Yds", touchdowns AS "TD", fumbles AS "Fmb", rushers.year, rushers.team_id
+    FROM (SELECT  SUM(attempts) AS attempts, SUM(yards) as yards, SUM(touchdowns) AS touchdowns, SUM(fumbles) AS fumbles, players.team_id, players.year 
+    FROM rushing JOIN players ON players.player_season_id = rushing.player_season_id {year_qry} GROUP BY players.team_id, players.year) 
+    AS rushers JOIN teams ON rushers.team_id = teams.team_id {team_qry}) AS rushing_teams JOIN season_team_stats ON season_team_stats.year = rushing_teams.year;'''.format(year_qry=team_year_query, team_qry=team_team_query)
+    df = get_data(query)
+    df = df.fillna(0)
+    df = df[df['s_team_id'] == df['team_id']] #some strange stuff is happening w/ the query if I add this as a second condition for the join...
+    df = df.drop(['s_team_id', 'team_id'], axis = 1)
+    st.write(df)
+if 'Receiving' in aggr_team_stat:
+    st.subheader("Team Receiving Data")
+    query = '''SELECT "Team", "Rec", "Tgt", "Yds", "TD", "Fmb", receiving_teams.year, receiving_teams.team_id, season_team_stats.team_id AS s_team_id FROM
+    (SELECT teams.current_name AS "Team", receptions AS "Rec", targets AS "Tgt", yards AS "Yds", touchdowns AS "TD", fumbles AS "Fmb", receivers.year, receivers.team_id
+    FROM (SELECT  SUM(receptions) AS receptions, SUM(targets) AS targets, SUM(yards) as yards, SUM(touchdowns) AS touchdowns, SUM(fumbles) AS fumbles, players.team_id, players.year 
+    FROM receiving JOIN players ON players.player_season_id = receiving.player_season_id {year_qry} GROUP BY players.team_id, players.year) 
+    AS receivers JOIN teams ON receivers.team_id = teams.team_id {team_qry}) AS receiving_teams JOIN season_team_stats ON season_team_stats.year = receiving_teams.year;'''.format(year_qry=team_year_query, team_qry=team_team_query)
+    df = get_data(query)
+    df = df.fillna(0)
+    df = df[df['s_team_id'] == df['team_id']] #some strange stuff is happening w/ the query if I add this as a second condition for the join...
+    df = df.drop(['s_team_id', 'team_id'], axis = 1)
+    st.write(df)
+if 'Defense' in aggr_team_stat:
+    st.subheader("Teme Defense Data")
+    # Todo
+    st.write(df)
+
 # Generate table of contents
 toc.generate()
