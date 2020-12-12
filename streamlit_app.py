@@ -1,7 +1,9 @@
 import streamlit as st
 import pandas as pd
 from vega_datasets import data
-
+from matplotlib import pyplot as plt
+from matplotlib import cm as cm
+import numpy as np
 import sqlalchemy
 from sqlalchemy import create_engine
 url = 'postgresql://admin:jntpjijh@35.230.82.92:13601/nfl'
@@ -187,6 +189,27 @@ if 'Defense' in aggr_team_stat:
 ## Todo: static visualization of winningest coaches, losingest coaches.
 
 ## Vivek stretch todo: scorigami  
+toc.header("NFL Scorigami")
+scores = get_data("SELECT DISTINCT points_winner, points_loser FROM games;")
+W_MAX = max(scores['points_winner'])
+L_MAX = max(scores['points_loser'])
+scores = scores.fillna(0)
+data = [[0 for i in range(int(W_MAX)+1)] for j in range(int(L_MAX)+1)]
+for i, row in scores.iterrows():
+    data[int(row['points_loser'])][int(row['points_winner'])] += 1
+
+fig = plt.figure()
+ax = fig.add_subplot(111)
+cmap = cm.get_cmap('Greens', 100)
+ax.xaxis.tick_top()
+ax.imshow(data, interpolation = "nearest", cmap=cmap)
+ax.grid(True)
+ax.set_xticks(np.arange(0, W_MAX, 1));
+ax.set_yticks(np.arange(0, L_MAX, 1));
+plt.xticks(fontsize=6, rotation = 'vertical')
+plt.yticks(fontsize=6)
+fig.tight_layout()
+st.write(fig)
 
 # Generate table of contents
 toc.generate()
