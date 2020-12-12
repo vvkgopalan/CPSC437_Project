@@ -194,10 +194,9 @@ df.sort_values(["Wins", "Year"], ascending=False, inplace=True)
 st.write(df)
 
 
-## Todo: toughest stadiums visualization (maybe bar chart on top of table)
+
 ## Todo: 2020 team predictions based on similarity. Maybe this also has us predict the superbowl winner and player award winners.
 ## Todo: output stats of award winners
-## Todo: static visualization of winningest coaches, losingest coaches.
 
 ## Vivek stretch todo: scorigami  
 toc.header("NFL Scorigami")
@@ -222,7 +221,7 @@ plt.yticks(fontsize=6)
 fig.tight_layout()
 st.write(fig)
 
-
+## static visualization of winningest coaches, losingest coaches.
 toc.header("Winning-est/Losing-est Coaches")
 coach_option = st.radio("Select Aggregation Option (min 16 games)", ('Losing-est (Coach & Team)', 'Losing-est (Overall)', 'Winning-est (Coach & Team)', 'Winning-est (Overall)'))
 
@@ -250,6 +249,48 @@ elif coach_option == 'Winning-est (Overall)':
     df = get_data(query)
     df = df.fillna(0)
     st.write(df)
+
+## toughest stadiums visualization (maybe bar chart on top of table)
+toc.header("Toughest Stadiums to Play In")
+
+def get_stadium_strengths():
+    games_data = pd.read_sql("SELECT winner, loser, home_team, year FROM games;", engine)
+    stadiums_data = pd.read_sql("SELECT name, year_from, year_to, team_list FROM stadiums;", engine)
+    team_id_to_team = pd.read_sql("SELECT team_id, current_name FROM teams;", engine)
+    teams_dict = team_id_to_team.set_index('team_id').to_dict()['current_name']
+
+    games_data["home_win"] = games_data["winner"] == games_data["home_team"]
+    games_data["home_loss"] = games_data["loser"] == games_data["home_team"]
+    games_data["winner"] = games_data["winner"].apply(lambda s: teams_dict[s])
+    games_data["loser"] = games_data["loser"].apply(lambda s: teams_dict[s])
+    games_data["home_team"] = games_data["home_team"].apply(lambda s: teams_dict[s])
+
+    stadium_list = []
+    for i, row in games_data.iterrows():
+        found = False
+        if pd.isna(row["home_team"]):
+            stadium_list.append("Neutral Site")
+            continue
+
+        for j, stadium in stadiums_data.iterrows():
+            if pd.isna(stadium['team_list']):
+                continue
+
+            if row['year'] >= stadium['year_from'] and row['year'] <= stadium['year_to'] and row["home_team"] in stadium['team_list']:
+                stadium_list.append(str(stadium['name']))
+                found = True
+                break
+
+        if not found:
+            stadium_list.append("Neutral Site")
+
+    games_data["stadiums"] = stadium_list
+    summarize_stadiums = games_data.groupby(['stadiums'])[['home_win', 'home_loss']].sum()
+    summarize_stadiums["W/L"] = summarize_stadiums['home_win']/summarize_stadiums['home_loss']
+    return summarize_stadiums
+
+stadium_strengths = get_stadium_strengths()
+st.write(stadium_strengths.sort_values(by='W/L', ascending=False))
 
 # Generate table of contents
 toc.generate()
