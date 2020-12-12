@@ -317,6 +317,7 @@ elif coach_option == 'Winning-est (Overall)':
 ## toughest stadiums visualization (maybe bar chart on top of table)
 toc.header("Toughest Stadiums to Play In")
 
+@st.cache(hash_funcs={sqlalchemy.engine.Engine: lambda _: None})
 def get_stadium_strengths():
     games_data = pd.read_sql("SELECT winner, loser, home_team, year FROM games;", engine)
     stadiums_data = pd.read_sql("SELECT name, year_from, year_to, team_list FROM stadiums;", engine)
