@@ -201,7 +201,7 @@ st.write(df)
 ## Stats of MVP Winners
 toc.header("Most Valuable Player (MVP) Winner Statistics")
 query = """
-SELECT awards.year, player_name, mvp_position AS position, teams_map.name AS team, season_team_stats.wins, season_team_stats.losses, season_team_stats.ties,
+SELECT awards.year, player_name, players.position, teams_map.name AS team, season_team_stats.wins, season_team_stats.losses, season_team_stats.ties,
     passing.yards AS "passing_yards", passing.touchdowns AS "passing_TD", rushing.yards AS "rushing_yards", rushing.touchdowns AS "rushing_TD", receiving.yards AS "receiving_yards", receiving.touchdowns AS "receiving_TD"
 FROM awards
 LEFT JOIN players ON mvp_player = players.player_season_id
@@ -223,7 +223,7 @@ st.write(df)
 ## Stats of OPOY Winners
 toc.header("Offensive Player of the Year (OPOY) Winner Statistics")
 query = """
-SELECT awards.year, player_name, opoy_position AS position, teams_map.name AS team, season_team_stats.wins, season_team_stats.losses, season_team_stats.ties,
+SELECT awards.year, player_name, players.position, teams_map.name AS team, season_team_stats.wins, season_team_stats.losses, season_team_stats.ties,
     passing.yards AS "passing_yards", passing.touchdowns AS "passing_TD", rushing.yards AS "rushing_yards", rushing.touchdowns AS "rushing_TD", receiving.yards AS "receiving_yards", receiving.touchdowns AS "receiving_TD"
 FROM awards
 LEFT JOIN players ON opoy_player = players.player_season_id
@@ -245,7 +245,7 @@ st.write(df)
 ## Stats of DPOY Winners
 toc.header("Defensive Player of the Year (DPOY) Winner Statistics")
 query = """
-SELECT awards.year, player_name, dpoy_position AS position, teams_map.name AS team, season_team_stats.wins, season_team_stats.losses, season_team_stats.ties,
+SELECT awards.year, player_name, players.position, teams_map.name AS team, season_team_stats.wins, season_team_stats.losses, season_team_stats.ties,
     solo_tackles, assisted_tackles, fumbles_forced, interceptions, sacks
 FROM awards
 LEFT JOIN players ON dpoy_player = players.player_season_id
