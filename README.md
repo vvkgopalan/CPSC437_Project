@@ -26,6 +26,12 @@ To view how we scraped the data, please see `scraper.ipynb`.
 
 The DDL for our database schema can be found in `nfl_ddl.sql`.
 
+## Underlying Database
+
+We used YugabyteDB as our underlying database. YugabyteDB is an open-source distributed key-value store forked from RocksDB. It has three APIs for data access: YSQL (Postgres wire-compatible), YCQL (Cassandra wire-compatible) and YEDIS (REDIS wire-compatible). We created a YSQL database and deployed it on K8s in GCP using Yugabyte's Cloud Platform. The cluster is a 3-node cluster with a replication factor of 3. We additionally created a backup database in case we perform some unintentional writes / schema alterations or data is otherwise corrupted in our primary database. This serves to add redundancy. 
+
+All queries written are PGSQL compatible. 
+
 ## Data Cleaning and Insertion
 
 To insert the data into our database, we used a jupyter notebook `Table_Cleaning.ipynb` to clean and modify the scraped data into the desired format. This notebook uses sqlalchemy to create a SQL engine that connects to our database which can be used with the `to_sql()` function to insert the data from pandas dataframes.
