@@ -363,6 +363,8 @@ stadiums = stadium_strengths.sort_values(by='W/L', ascending=False).index.tolist
 wls = stadium_strengths.sort_values(by='W/L', ascending=False)['W/L'][0:10]
 barax.bar(stadiums,wls)
 plt.xticks(rotation = 'vertical')
+plt.ylabel('Home W/L Ratio')
+plt.title('10 Best Home Records')
 st.write(barfig)
 
 ## 10 worst home records
@@ -372,6 +374,8 @@ stadiums = stadium_strengths.sort_values(by='W/L', ascending=True).index.tolist(
 wls = stadium_strengths.sort_values(by='W/L', ascending=True)['W/L'][0:10]
 barax.bar(stadiums,wls)
 plt.xticks(rotation = 'vertical')
+plt.ylabel('Home W/L Ratio')
+plt.title('10 Worst Home Records')
 st.write(barfig)
 
 # Generate table of contents
