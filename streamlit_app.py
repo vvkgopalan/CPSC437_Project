@@ -274,12 +274,15 @@ fig = plt.figure()
 ax = fig.add_subplot(111)
 cmap = cm.get_cmap('Greens', 100)
 ax.xaxis.tick_top()
+ax.xaxis.set_label_position('top')
 ax.imshow(data, interpolation = "nearest", cmap=cmap)
 ax.grid(True)
 ax.set_xticks(np.arange(0, W_MAX, 1));
 ax.set_yticks(np.arange(0, L_MAX, 1));
 plt.xticks(fontsize=6, rotation = 'vertical')
 plt.yticks(fontsize=6)
+plt.xlabel('Points (Winner)')
+plt.ylabel('Points (Loser)')
 fig.tight_layout()
 st.write(fig)
 
