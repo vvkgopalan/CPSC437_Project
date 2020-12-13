@@ -32,7 +32,7 @@ We used YugabyteDB as our underlying database. YugabyteDB is an open-source dist
 
 All queries written are PGSQL compatible. 
 
-To access the database directly, please follow the instructions here: https://download.yugabyte.com/. After you have downloaded and extracted the yugabyte-db `tar.gz`, please use the following command to connect to the database: `PGPASSWORD=jntpjijh ./bin/ysqlsh -h 35.230.82.92 -p 13601 -U admin -d yugabyte`
+To access the database directly, please follow the instructions here: https://download.yugabyte.com/. After you have downloaded and extracted the yugabyte-db `tar.gz`, please use the following command to connect to the database: `PGPASSWORD=jntpjijh ./bin/ysqlsh -h 35.230.82.92 -p 13601 -U admin -d nfl`
 
 ## Data Cleaning and Insertion
 
