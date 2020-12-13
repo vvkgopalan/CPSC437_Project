@@ -34,4 +34,6 @@ To insert the data into our database, we used a jupyter notebook `Table_Cleaning
 
 The webpage was created using streamlit (source code can be found in `streamlit_app.py`). Here, we retrieved the data from our database using the pandas `read_sql()` function and a query. These queries are then used to create a visualization which ranges from barplots and scorigami charts to a nice interactive table where the user can order the rows based on any column.
 
+The page should be available at https://share.streamlit.io/vvkgopalan/cpsc437_project.
+
 To run the streamlit webpage locally, run `streamlit run streamlit_app.py` from the command line.
