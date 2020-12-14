@@ -1,6 +1,6 @@
 # NFL Database Final Project (CPSC 437)
 
-Teammates: SK Bong and Vivek Gopalan
+Teammates: SK Bong (skb46) and Vivek Gopalan (vyg2)
 
 In this repository, we have the data, DDL (for the database), and other code that was used to complete the project:
 
